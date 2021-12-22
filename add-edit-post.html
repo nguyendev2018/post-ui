@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Posts UI</title>
+    <title>Add edit post</title>
 
     <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-  
+
     <!-- Use font Rubik -->
     <link
       href="https://fonts.googleapis.com/css?family=Rubik&display=swap"
@@ -19,60 +18,17 @@
     />
 
     <!-- Internal CSS -->
+<<<<<<< Updated upstream
     <link rel="stylesheet" href="style/main.css" />
     <link rel="stylesheet" href="style/home.css" />
+=======
+    <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/post-detail.css" />
+    <link rel="stylesheet" href="/style/add-edit-post.css" />
+>>>>>>> Stashed changes
   </head>
 
   <body>
-    <!-- This is a template HTML for a post item -->
-    <template id="postItemTemplate">
-      <li class="col-12 col-md-6 col-lg-4">
-        <div class="post-item mb-4">
-          <div class="card">
-            <img
-              data-id="thumbnail"
-              src="images/recipe.jpg"
-              class="card-img-top"
-              alt="recipe"
-            />
-
-            <div class="card-body">
-              <h5 data-id="title" class="card-title">Card title</h5>
-
-              <p data-id="description" class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-
-              <p class="card-text">
-                <small class="text-muted">by</small>
-                <small data-id="author" class="text-muted font-weight-bold">
-                  Hau Nguyen
-                </small>
-                <small data-id="timeSpan" class="text-muted">
-                  - 3 mins ago
-                </small>
-              </p>
-            </div>
-          </div>
-
-          <div class="post-item-menu">
-            <div data-id="edit" class="menu-item rounded-circle" role="button">
-              <i class="fas fa-pen"></i>
-            </div>
-            <div
-              data-id="remove"
-              class="remove-button menu-item rounded-circle"
-              role="button"
-            >
-              <i class="fas fa-trash"></i>
-            </div>
-          </div>
-        </div>
-      </li>
-    </template>
-
     <header>
       <!-- Navigation
       - Please note that we use an empty item to make sure that we always have 3 flex-items
@@ -82,7 +38,7 @@
         <div class="container">
           <ul class="nav justify-content-between align-items-center">
             <li class="nav-item">
-              <a class="nav-link" href="">
+              <a class="nav-link" href=".">
                 <img
                   class="nav__logo"
                   src="images/logo.svg"
@@ -92,9 +48,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="add-edit-post.html"
-                ><i class="fas fa-plus-circle mr-1"></i>Add new post</a
-              >
+              <a id="goToDetailPageLink" class="nav-link" href="#"></a>
             </li>
           </ul>
         </div>
@@ -102,75 +56,77 @@
     </header>
 
     <main>
-      <section class="posts-section">
+      <section id="postHeroImage" class="hero"></section>
+
+      <section class="post-detail">
         <div class="container">
-          <h1 class="with-underline text-center">Latest posts</h1>
+          <div class="post-detail-main shadow-sm">
+            <div class="post-title-wrapper">
+              <h1 id="postDetailTitle">Add edit a post</h1>
 
-          <!-- Posts list -->
-          <ul id="postsList" class="row posts-list justify-content-center">
-            <li class="col-12 col-md-6 col-lg-4">
-              <div class="post-item mb-4">
-                <div class="card">
-                  <img
-                    src="images/recipe.jpg"
-                    class="card-img-top"
-                    alt="recipe"
-                    onerror="this.onerror=null;this.src='https://picsum.photos/1368/400';"
-                  />
+              <p>
+                <small class="text-muted"
+                  >Please enter the following information and submit
+                  then.</small
+                >
+              </p>
+            </div>
 
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-
-                    <p class="card-text">
-                      <small class="text-muted">by</small>
-                      <small class="text-muted font-weight-bold"
-                        >Hau Nguyen</small
-                      >
-                      <small class="text-muted">- 3 mins ago</small>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="post-item-menu">
-                  <div class="menu-item rounded-circle">
-                    <i class="fas fa-pen"></i>
-                  </div>
-                  <div class="menu-item rounded-circle">
-                    <i class="fas fa-trash"></i>
-                  </div>
+            <form id="postForm" class="post-form">
+              <div class="form-group">
+                <label for="postTitle">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="title"
+                  placeholder="Eg: Learning JS is fun"
+                />
+                <div class="invalid-feedback">
+                  Ooops! Please write a nice title for your post &gt;.&lt;
                 </div>
               </div>
-            </li>
-          </ul>
 
-          <!-- Posts pagination -->
-          <nav class="posts-nav" aria-label="Posts navigation">
-            <ul
-              hidden
-              id="postsPagination"
-              class="pagination justify-content-center"
-            >
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+              <div class="form-group">
+                <label for="postAuthor">Author</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="author"
+                  placeholder="Eg: Paul Nguyen"
+                />
+                <div class="invalid-feedback">
+                  Please enter author of this post!
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="postDescription">Description</label>
+                <textarea
+                  class="form-control"
+                  name="description"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="postChangeImage">Image</label>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                  We&apos;re using
+                  <a href="https://picsum.photos">Picsum service</a> to get a
+                  random image.
+                </small>
+                <button type="button" id="postChangeImage" class="btn btn-dark">
+                  Change post image
+                </button>
+              </div>
+
+              <div class="text-center">
+                <button class="btn btn-primary">
+                  <i class="fas fa-save mr-1"></i> Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </section>
     </main>
@@ -178,8 +134,7 @@
     <footer class="text-center text-muted py-3">
       <small>Created by Po with <i class="fas fa-heart"></i></small>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
     <!-- Scripts should be placed here to prevent blocking render UI -->
     <!-- <script type="module" src="js/main.mjs"></script> -->
   </body>
