@@ -80,3 +80,18 @@ ul {
 .nav .nav__link:hover{
   text-decoration: underline;
 }
+.carousel-item{
+  background-size:cover ;
+  background-repeat:no-repeat ;
+  height: 300px;
+}
+.carousel-item.slide-one{
+  background-image: url();
+ 
+}
+.carousel-item.slide-two{
+  height:300px;
+}
+.carousel-item.slide-three{
+  height:300px;
+}
