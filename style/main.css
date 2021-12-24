@@ -95,3 +95,7 @@ ul {
 .carousel-item.slide-three{
    background-image: url(https://pbs.twimg.com/media/EjeEufnWsAABk92.jpg);
 }
+.carousel-indicators [data-bs-target]{
+  width: 20px;
+  height: 1px;
+}

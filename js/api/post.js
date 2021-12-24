@@ -22,4 +22,5 @@ const post = {
         return axiosClient.delete(url);
     }
 }
+
 export default post
