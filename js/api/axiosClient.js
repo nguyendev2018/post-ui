@@ -11,6 +11,8 @@ axiosClient.interceptors.request.use(function (config) {
     // Do something before request is sent
     // config là config request
     console.log('request interceptors', config);
+    // Attach token to request if exits
+
     return config;
 }, function (error) {
     // Do something with request error
