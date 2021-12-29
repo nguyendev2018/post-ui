@@ -1,7 +1,11 @@
 import post from './api/post';
 
 function createPostItem(post) {
-    // console.log({ post });
+    const postElement = document.getElementById("postTemplate");
+    const liElement = postElement.content.firstElementChild.cloneNode(true);
+    // update title , description, author,thumbnail
+    const titleElement = liElement.querySelector('[data-id="title"]')
+    titleElement.textContent = post.title;
 }
 
 function renderPost(postList) {
