@@ -1,23 +1,25 @@
 import post from './api/post';
 
-function createPostItem() {
-
+function createPostItem(post) {
+    // console.log({ post });
 }
 
 function renderPost(postList) {
-    console.log({ postList });
+    const ulElement = document.getElementById("postList");
+    postList.forEach((post) => {
+        const liElement = createPostItem(post);
+        ulElement.appendChild(liElement)
+    })
 }
 (async() => {
-        try {
-            const queryParams = {
-                _page: 1,
-                _limit: 6,
-            }
-            const { data, pagination } = await post.getAll(queryParams);
-        })
-}
-catch (error) {
-    console.log('get all failed');
-}
-
+    try {
+        const queryParams = {
+            _page: 1,
+            _limit: 5,
+        }
+        const { data, pagination } = await post.getAll(queryParams);
+        renderPost(data);
+    } catch (error) {
+        console.log('get all failed', error);
+    }
 })()
