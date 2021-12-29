@@ -1,34 +1,37 @@
+import { Dayjs } from 'dayjs';
 import post from './api/post';
-import { setTextContent } from './utils';
+import { setImg, setTextContent } from './utils';
+import 'dayjs/plugin/relativeTime';
 
-function createPostItem(post) {
+function createPostItem(itemData) {
     const postElement = document.getElementById("postTemplate");
 
     const liElement = postElement.content.firstElementChild.cloneNode(true);
 
     // update title , description, author,thumbnail
-    setTextContent(liElement, '[data-id="title"]', post.title)
-    setTextContent(liElement, '[data-id="author"]', post.author)
-    setTextContent(liElement, '[data-id="description"]', post.description)
-    setTextContent(liElement, '[data-id="thumbnail"]', post.imageUrl)
-
-    const titleElement = liElement.querySelector()
-    titleElement.textContent = post.title;
-    const authorElement = liElement.querySelector('')
-    authorElement.textContent = post.author;
-    const descriptionElement = liElement.querySelector('')
-    descriptionElement.textContent = post.description;
-    const thumbnailElement = liElement.querySelector('')
-    thumbnailElement.src = post.imageUrl;
+    setTextContent(liElement, '[data-id="title"]', itemData.title)
+    setTextContent(liElement, '[data-id="author"]', itemData.author)
+    setTextContent(liElement, '[data-id="description"]', itemData.description)
+    setImg(liElement, '[data-id="thumbnail"]', itemData.imageUrl)
+    Dayjs(post.updateAt).fromNow();
+    // const titleElement = liElement.querySelector()
+    // titleElement.textContent = post.title;
+    // const authorElement = liElement.querySelector('')
+    // authorElement.textContent = post.author;
+    // const descriptionElement = liElement.querySelector('')
+    // descriptionElement.textContent = post.description;
+    // const thumbnailElement = liElement.querySelector('')
+    // thumbnailElement.src = post.imageUrl;
     return liElement;
 
 }
 
-function renderPost(postList) {
+function renderPost(data) {
+
     const ulElement = document.getElementById("postList");
-    if (!ulElement) return
-    postList.forEach((post) => {
-        const liElement = createPostItem(post);
+    data.forEach((itemData) => {
+        console.log(itemData);
+        const liElement = createPostItem(itemData);
         ulElement.appendChild(liElement)
     })
 }
