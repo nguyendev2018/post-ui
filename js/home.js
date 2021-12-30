@@ -39,6 +39,8 @@ function createPostItem(itemData) {
 function renderPost(data) {
 
     const ulElement = document.getElementById("postList");
+    // check current list 
+    ulElement.textContent = "";
     data.forEach((itemData) => {
         const liElement = createPostItem(itemData);
         ulElement.appendChild(liElement)
@@ -58,20 +60,25 @@ function renderPage(pagination) {
     (_page > totalPages) ? ulPage.lastElementChild.classList.add("disabled"): ulPage.lastElementChild.classList.remove("disabled");
 }
 
-function handleFilterChange(filterName, filterValue) {
+async function handleFilterChange(filterName, filterValue) {
     //update query params
     const url = new URL(window.location);
     url.searchParams.set(filterName, filterValue);
     history.pushState({}, '', url);
     //fetch API
     //render post
+    const { data, pagination } = await post.getAll(url.searchParams);
+    renderPost(data);
+    renderPage(pagination)
+
 
 }
 
 function handlePrevClick(e) {
     e.preventDefault();
     const ulPage = getPagination();
-    const page = ulPage.dataset.page;
+    console.log(ulPage);
+    const page = Number.parseInt(ulPage.dataset.page)
     if (page <= 1) return;
     handleFilterChange('_page', page - 1)
 }
@@ -79,8 +86,8 @@ function handlePrevClick(e) {
 function handleNextClick(e) {
     e.preventDefault();
     const ulPage = getPagination();
-    const page = ulPage.dataset.page;
-    const page = ulPage.dataset.totalPages;
+    const page = Number.parseInt(ulPage.dataset.page);
+    const totalPages = ulPage.dataset.totalPages;
     if (page >= totalPages) return;
     handleFilterChange('_page', page + 1)
 }

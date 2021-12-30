@@ -1,3 +1,3 @@
 export function getPagination() {
-    return document.getElementById("pagination;")
+    return document.getElementById("pagination")
 }

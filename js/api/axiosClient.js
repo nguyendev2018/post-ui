@@ -10,7 +10,6 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(function(config) {
     // Do something before request is sent
     // config là config request
-    console.log('request interceptors', config);
     // Attach token to request if exits
     const accessToken = localStorage.getItem("access_token")
     if (accessToken) {
