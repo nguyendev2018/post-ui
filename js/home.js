@@ -1,7 +1,9 @@
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import post from './api/post';
 import { setImg, setTextContent } from './utils';
-import 'dayjs/plugin/relativeTime';
+import relativeTime from 'dayjs/plugin/relativeTime';
+// to use from now function
+dayjs.extend(relativeTime);
 
 function createPostItem(itemData) {
     const postElement = document.getElementById("postTemplate");
@@ -13,7 +15,14 @@ function createPostItem(itemData) {
     setTextContent(liElement, '[data-id="author"]', itemData.author)
     setTextContent(liElement, '[data-id="description"]', itemData.description)
     setImg(liElement, '[data-id="thumbnail"]', itemData.imageUrl)
-    Dayjs(post.updateAt).fromNow();
+    setTextContent(liElement, '[data-id="timeSpan"]', dayjs(itemData.updateAt).fromNow());
+    const thumbnailImg = liElement.querySelector('[data-id="thumbnail"]');
+    if (thumbnailImg) {
+        thumbnailImg.src = itemData.imageUrl;
+        thumbnailImg.addEventListener("error", () => {
+            thumbnailImg.src = "https://image.freepik.com/free-vector/glitch-error-404-page_23-2148105404.jpg"
+        })
+    }
     // const titleElement = liElement.querySelector()
     // titleElement.textContent = post.title;
     // const authorElement = liElement.querySelector('')
