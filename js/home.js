@@ -45,9 +45,15 @@ function renderPost(data) {
 }
 
 function renderPage(pagination) {
+    const ulPage = document.getElementById("pagination");
     //calc totalPage
     const { _page, _limit, _totalRows } = pagination;
+    const totalPages = Math.ceil(_totalRows / _limit);
     //save page and totalPage to ulPage
+    ulPage.dataset.page = _page;
+    ulPage.dataset.totalPages = totalPages;
+    // check if enable/ disable prev/ next links
+    if (_page <= 1) ulPage.firstElementChild.classList.add("disabled")
 
 }
 
