@@ -70,10 +70,19 @@ function handleFilterChange(filterName, filterValue) {
 
 function handlePrevClick(e) {
     e.preventDefault();
+    const ulPage = getPagination();
+    const page = ulPage.dataset.page;
+    if (page <= 1) return;
+    handleFilterChange('_page', page - 1)
 }
 
 function handleNextClick(e) {
     e.preventDefault();
+    const ulPage = getPagination();
+    const page = ulPage.dataset.page;
+    const page = ulPage.dataset.totalPages;
+    if (page >= totalPages) return;
+    handleFilterChange('_page', page + 1)
 }
 
 function init() {
