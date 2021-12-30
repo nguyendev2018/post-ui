@@ -2,6 +2,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import post from './api/post';
 import { setImg, setTextContent } from './utils';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { getPagination } from './utils';
 // to use from now function
 dayjs.extend(relativeTime);
 
@@ -45,7 +46,7 @@ function renderPost(data) {
 }
 
 function renderPage(pagination) {
-    const ulPage = document.getElementById("pagination");
+    const ulPage = getPagination();
     //calc totalPage
     const { _page, _limit, _totalRows } = pagination;
     const totalPages = Math.ceil(_totalRows / _limit);
@@ -53,10 +54,8 @@ function renderPage(pagination) {
     ulPage.dataset.page = _page;
     ulPage.dataset.totalPages = totalPages;
     // check if enable/ disable prev/ next links
-    if (_page <= 1) ulPage.firstElementChild.classList.add("disabled")
-    else ulElement.firstElementChild.classList.remove("disabled")
-    if (_page >= totalPages) ulPage.lastElementChild.classList.add("disabled")
-    else ulElement.firstElementChild.classList.remove("disabled")
+    (_page <= 1) ? ulPage.firstElementChild.classList.add("disabled"): ulPage.firstElementChild.classList.remove("disabled");
+    (_page > totalPages) ? ulPage.lastElementChild.classList.add("disabled"): ulPage.lastElementChild.classList.remove("disabled");
 }
 
 function handleFilterChange(filterName, filterValue) {
@@ -101,7 +100,7 @@ function initUrl() {
         const queryParams = new URLSearchParams(window.location.search);
         // set default query params if not exitsted
         const { data, pagination } = await post.getAll(queryParams);
-        console.log(paginations);
+        console.log(pagination);
         renderPost(data);
         renderPage(pagination)
     } catch (error) {
