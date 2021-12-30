@@ -103,6 +103,11 @@ function init() {
 
 }
 
+function initSearch() {
+    const searchInput = document.getElementById("searchInput");
+    // set default value from query params
+}
+
 function initUrl() {
     const url = new URL(window.location)
     if (!url.searchParams.get('_page')) url.searchParams.set('_page', 1);
@@ -113,6 +118,7 @@ function initUrl() {
     try {
         init();
         initUrl();
+        initSearch();
         const queryParams = new URLSearchParams(window.location.search);
         // set default query params if not exitsted
         const { data, pagination } = await post.getAll(queryParams);
