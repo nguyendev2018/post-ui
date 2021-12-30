@@ -49,6 +49,9 @@ function handleFilterChange(filterName, filterValue) {
     const url = new URL(window.location);
     url.searchParams.set(filterName, filterValue);
     history.pushState({}, '', url);
+    //fetch API
+    //render post
+
 }
 
 function handlePrevClick(e) {
@@ -72,10 +75,8 @@ function init() {
 (async() => {
     try {
         init();
-        const queryParams = {
-            _page: 1,
-            _limit: 5,
-        }
+        const queryParams = new URLSearchParams(window.location.search);
+        // set default query params if not exitsted
         const { data, pagination } = await post.getAll(queryParams);
         renderPost(data);
     } catch (error) {
