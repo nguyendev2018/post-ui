@@ -3,6 +3,7 @@ import post from './api/post';
 import { setImg, setTextContent } from './utils';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { getPagination } from './utils';
+import debounce from 'lodash.debounce';
 // to use from now function
 dayjs.extend(relativeTime);
 
