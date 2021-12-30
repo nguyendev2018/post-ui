@@ -39,20 +39,45 @@ function renderPost(data) {
 
     const ulElement = document.getElementById("postList");
     data.forEach((itemData) => {
-        console.log(itemData);
         const liElement = createPostItem(itemData);
         ulElement.appendChild(liElement)
     })
 }
+
+function handleFilterChange(filterName, filterValue) {
+    //update query params
+    const url = new URL(window.location);
+    url.searchParams.set(filterName, filterValue);
+    history.pushState({}, '', url);
+}
+
+function handlePrevClick(e) {
+    e.preventDefault();
+}
+
+function handleNextClick(e) {
+    e.preventDefault();
+}
+
+function init() {
+    // bind click event for prev/next link
+    const ulPage = document.getElementById("pagination");
+    // add click event for prev link  
+    const prevLink = ulPage.firstElementChild.firstElementChild;
+    prevLink.addEventListener("click", handlePrevClick)
+    const nextLink = ulPage.lastElementChild.lastElementChild;
+    nextLink.addEventListener("click", handleNextClick)
+
+}
 (async() => {
     try {
+        init();
         const queryParams = {
             _page: 1,
             _limit: 5,
         }
         const { data, pagination } = await post.getAll(queryParams);
         renderPost(data);
-        console.log(data);
     } catch (error) {
         console.log('get all failed', error);
     }
