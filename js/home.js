@@ -44,6 +44,13 @@ function renderPost(data) {
     })
 }
 
+function renderPage(pagination) {
+    //calc totalPage
+    const { _page, _limit, _totalRows } = pagination;
+    //save page and totalPage to ulPage
+
+}
+
 function handleFilterChange(filterName, filterValue) {
     //update query params
     const url = new URL(window.location);
@@ -72,13 +79,22 @@ function init() {
     nextLink.addEventListener("click", handleNextClick)
 
 }
+
+function initUrl() {
+    const url = new URL(window.location)
+    if (!url.searchParams.get('_page')) url.searchParams.set('_page', 1);
+    if (!url.searchParams.get('_limit')) url.searchParams.set('_limit', 6);
+    history.pushState({}, '', url);
+}
 (async() => {
     try {
         init();
+        initUrl();
         const queryParams = new URLSearchParams(window.location.search);
         // set default query params if not exitsted
         const { data, pagination } = await post.getAll(queryParams);
         renderPost(data);
+        renderPage(pagination)
     } catch (error) {
         console.log('get all failed', error);
     }
