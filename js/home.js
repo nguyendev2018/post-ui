@@ -46,7 +46,7 @@ function getDefaultParams() {
             // set default query params if not exitsted
         const { data, pagination } = await post.getAll(queryParams);
         renderPost(data);
-        renderPage(pagination)
+        renderPage(pagination);
     } catch (error) {
         console.log('get all failed', error);
     }
