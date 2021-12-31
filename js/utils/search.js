@@ -1,4 +1,4 @@
-function initSearch() {
+export function initSearch() {
     const searchInput = document.getElementById("searchInput");
     // set default value from query params
     // title_like  
