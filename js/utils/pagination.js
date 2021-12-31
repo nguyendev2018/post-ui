@@ -1,4 +1,5 @@
 export function renderPage(elementId, pagination) {
+    console.log(pagination);
     const ulPage = document.getElementById(elementId);
     //calc totalPage
     const { _page, _limit, _totalRows } = pagination;

@@ -16,8 +16,6 @@ async function handleFilterChange(filterName, filterValue) {
     const { data, pagination } = await post.getAll(url.searchParams);
     renderPost(data);
     renderPage(pagination)
-
-
 }
 
 
@@ -47,6 +45,7 @@ function getDefaultParams() {
         const { data, pagination } = await post.getAll(queryParams);
         renderPost(data);
         renderPage(pagination);
+        console.log(pagination);
     } catch (error) {
         console.log('get all failed', error);
     }
