@@ -1,5 +1,5 @@
 import post from './api/post';
-import { initPagination, initSearch } from './utils'
+import { initPage, initSearch, renderPost, renderPage } from './utils'
 
 
 
@@ -33,7 +33,7 @@ function getDefaultParams() {
     try {
 
         const queryParams = getDefaultParams();
-        initPagination({
+        initPage({
             elementId: 'pagination',
             defaultParams: queryParams,
             onChange: page => handleFilterChange('_page', page)
