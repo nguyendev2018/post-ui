@@ -1,13 +1,10 @@
-import dayjs, { Dayjs } from 'dayjs';
-import post from './api/post';
-import { setImg, setTextContent } from './utils';
+import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { getPagination } from './utils';
-import debounce from 'lodash.debounce'
+import { setImg, setTextContent } from './common';
 // to use from now function
 dayjs.extend(relativeTime);
 
-function createPostItem(itemData) {
+export function createPostItem(itemData) {
     const postElement = document.getElementById("postTemplate");
 
     const liElement = postElement.content.firstElementChild.cloneNode(true);
@@ -29,7 +26,7 @@ function createPostItem(itemData) {
 
 }
 
-function renderPost(data) {
+export function renderPost(data) {
 
     const ulElement = document.getElementById("postList");
     // check current list 
