@@ -1,6 +1,6 @@
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import post from './api/post';
-import { setImg, setTextContent } from './utils';
+import { setImg, setTextContent } from './common';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { getPagination } from './utils';
 import debounce from 'lodash.debounce'
@@ -25,14 +25,6 @@ function createPostItem(itemData) {
             thumbnailImg.src = "https://image.freepik.com/free-vector/glitch-error-404-page_23-2148105404.jpg"
         })
     }
-    // const titleElement = liElement.querySelector()
-    // titleElement.textContent = post.title;
-    // const authorElement = liElement.querySelector('')
-    // authorElement.textContent = post.author;
-    // const descriptionElement = liElement.querySelector('')
-    // descriptionElement.textContent = post.description;
-    // const thumbnailElement = liElement.querySelector('')
-    // thumbnailElement.src = post.imageUrl;
     return liElement;
 
 }
@@ -119,19 +111,18 @@ function initSearch() {
     searchInput.addEventListener("input", debounceSearch);
 }
 
-function initUrl() {
+function getDefaultParams() {
     const url = new URL(window.location)
     if (!url.searchParams.get('_page')) url.searchParams.set('_page', 1);
     if (!url.searchParams.get('_limit')) url.searchParams.set('_limit', 6);
     history.pushState({}, '', url);
+    return url.searchParams;
 }
 (async() => {
     try {
         init();
         initSearch();
-        initUrl();
-        const queryParams = new URLSearchParams(window.location.search);
-        console.log(queryParams);
+        const queryParams = getDefaultParams();
         // set default query params if not exitsted
         const { data, pagination } = await post.getAll(queryParams);
         renderPost(data);
