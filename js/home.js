@@ -108,6 +108,11 @@ function init() {
 function initSearch() {
     const searchInput = document.getElementById("searchInput");
     // set default value from query params
+    // title_like  
+    const queryParams = new URLSearchParams(window.location.search);
+    if (queryParams.get('title_like')) {
+        searchInput.value = queryParams.get('title_like')
+    }
     const debounceSearch = debounce(
         (event) => handleFilterChange('title_like', event.target.value), 500
     );
@@ -123,12 +128,12 @@ function initUrl() {
 (async() => {
     try {
         init();
-        initUrl();
         initSearch();
+        initUrl();
         const queryParams = new URLSearchParams(window.location.search);
+        console.log(queryParams);
         // set default query params if not exitsted
         const { data, pagination } = await post.getAll(queryParams);
-        console.log(pagination);
         renderPost(data);
         renderPage(pagination)
     } catch (error) {
