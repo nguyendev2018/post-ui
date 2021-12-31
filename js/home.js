@@ -9,9 +9,7 @@ dayjs.extend(relativeTime);
 
 function createPostItem(itemData) {
     const postElement = document.getElementById("postTemplate");
-
     const liElement = postElement.content.firstElementChild.cloneNode(true);
-
     // update title , description, author,thumbnail
     setTextContent(liElement, '[data-id="title"]', itemData.title)
     setTextContent(liElement, '[data-id="author"]', itemData.author)
