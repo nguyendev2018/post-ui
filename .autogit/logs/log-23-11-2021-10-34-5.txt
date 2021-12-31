@@ -1,0 +1,20 @@
+-------------------- Auto-Git Log --------------------
+		Thu Dec 23 2021 10:34:05 GMT+0700 (Indochina Time)
+------------------------------------------------------
+
+Modified files:
+* add-edit-post.html
+* index.html
+* js/main.js
+
+
+Created files:
+* .autogit/logs/log-22-11-2021-15-43-59.txt
+* js/api/axiosClient.js
+* js/api/post.js
+
+
+Deleted files:
+
+
+Renamed files:

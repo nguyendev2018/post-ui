@@ -1,0 +1,17 @@
+-------------------- Auto-Git Log --------------------
+		Fri Dec 24 2021 10:39:03 GMT+0700 (Indochina Time)
+------------------------------------------------------
+
+Modified files:
+* index.html
+* style/main.css
+
+
+Created files:
+* .autogit/logs/log-24-11-2021-10-8-57.txt
+
+
+Deleted files:
+
+
+Renamed files:

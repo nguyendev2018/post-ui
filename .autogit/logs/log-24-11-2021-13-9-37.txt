@@ -1,0 +1,16 @@
+-------------------- Auto-Git Log --------------------
+		Fri Dec 24 2021 13:09:37 GMT+0700 (Indochina Time)
+------------------------------------------------------
+
+Modified files:
+* js/api/axiosClient.js
+
+
+Created files:
+* .autogit/logs/log-24-11-2021-12-39-26.txt
+
+
+Deleted files:
+
+
+Renamed files:

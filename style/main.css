@@ -80,3 +80,22 @@ ul {
 .nav .nav__link:hover{
   text-decoration: underline;
 }
+.carousel-item{
+  background-size:cover ;
+  background-repeat:no-repeat ;
+  height: 500px;
+}
+.carousel-item.slide-one{
+  background-image: url(https://www.bmw.vn/content/dam/bmw/common/home/teaser/bmw-7series-sedan-gklplus-teaser-desktop.jpg.asset.1547636126503.jpg);
+ 
+}
+.carousel-item.slide-two{
+   background-image: url(https://www.bmw.ca/content/dam/bmw/common/all-models/7-series/sedan/2019/inspire/bmw-7series-sedan-inspire-cp-hybrid-desktop.jpg);
+}
+.carousel-item.slide-three{
+   background-image: url(https://pbs.twimg.com/media/EjeEufnWsAABk92.jpg);
+}
+.carousel-indicators [data-bs-target]{
+  width: 20px;
+  height: 1px;
+}
