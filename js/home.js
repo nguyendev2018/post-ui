@@ -3,7 +3,7 @@ import post from './api/post';
 import { setImg, setTextContent } from './utils';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { getPagination } from './utils';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash.debounce'
 // to use from now function
 dayjs.extend(relativeTime);
 
@@ -58,13 +58,15 @@ function renderPage(pagination) {
     ulPage.dataset.totalPages = totalPages;
     // check if enable/ disable prev/ next links
     (_page <= 1) ? ulPage.firstElementChild.classList.add("disabled"): ulPage.firstElementChild.classList.remove("disabled");
-    (_page > totalPages) ? ulPage.lastElementChild.classList.add("disabled"): ulPage.lastElementChild.classList.remove("disabled");
+    (_page >= totalPages) ? ulPage.lastElementChild.classList.add("disabled"): ulPage.lastElementChild.classList.remove("disabled");
 }
 
 async function handleFilterChange(filterName, filterValue) {
     //update query params
     const url = new URL(window.location);
     url.searchParams.set(filterName, filterValue);
+    //reset page if needed
+    if (filterName === "title_like") url.searchParams.set("_page", 1);
     history.pushState({}, '', url);
     //fetch API
     //render post
@@ -78,7 +80,6 @@ async function handleFilterChange(filterName, filterValue) {
 function handlePrevClick(e) {
     e.preventDefault();
     const ulPage = getPagination();
-    console.log(ulPage);
     const page = Number.parseInt(ulPage.dataset.page)
     if (page <= 1) return;
     handleFilterChange('_page', page - 1)
@@ -107,6 +108,10 @@ function init() {
 function initSearch() {
     const searchInput = document.getElementById("searchInput");
     // set default value from query params
+    const debounceSearch = debounce(
+        (event) => handleFilterChange('title_like', event.target.value), 500
+    );
+    searchInput.addEventListener("input", debounceSearch);
 }
 
 function initUrl() {
