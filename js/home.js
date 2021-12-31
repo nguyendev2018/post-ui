@@ -1,5 +1,5 @@
 import post from './api/post';
-import { initPagination, initSearch, renderPostList, renderPagination } from './utils'
+import { initPage, initSearch, renderPost, renderPage } from './utils'
 
 
 
@@ -16,8 +16,6 @@ async function handleFilterChange(filterName, filterValue) {
     const { data, pagination } = await post.getAll(url.searchParams);
     renderPost(data);
     renderPage(pagination)
-
-
 }
 
 
@@ -33,7 +31,7 @@ function getDefaultParams() {
     try {
 
         const queryParams = getDefaultParams();
-        initPagination({
+        initPage({
             elementId: 'pagination',
             defaultParams: queryParams,
             onChange: page => handleFilterChange('_page', page)
@@ -46,7 +44,8 @@ function getDefaultParams() {
             // set default query params if not exitsted
         const { data, pagination } = await post.getAll(queryParams);
         renderPost(data);
-        renderPage(pagination)
+        renderPage(pagination);
+        console.log(pagination);
     } catch (error) {
         console.log('get all failed', error);
     }
