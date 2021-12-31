@@ -1,5 +1,5 @@
 import post from './api/post';
-import { initPagination, initSearch, renderPostList, renderPagination } from './utils'
+import { initPagination, initSearch } from './utils'
 
 
 
