@@ -1,9 +1,5 @@
 import post from './api/post';
 import { initPage, initSearch, renderPost, renderPage } from './utils'
-
-
-
-
 async function handleFilterChange(filterName, filterValue) {
     //update query params
     const url = new URL(window.location);
@@ -45,7 +41,6 @@ function getDefaultParams() {
         const { data, pagination } = await post.getAll(queryParams);
         renderPost(data);
         renderPage(pagination);
-        console.log(pagination);
     } catch (error) {
         console.log('get all failed', error);
     }
